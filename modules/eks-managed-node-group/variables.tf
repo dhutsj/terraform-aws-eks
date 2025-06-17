@@ -4,6 +4,12 @@ variable "create" {
   default     = true
 }
 
+variable "create_managed_node_group" {
+  description = "Determines whether to create EKS managed node group or not"
+  type        = bool
+  default     = false
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)

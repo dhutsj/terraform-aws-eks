@@ -516,6 +516,10 @@ variable "eks_managed_node_groups" {
   default     = {}
 }
 
+variable "create_managed_node_group" {
+  default = false
+}
+
 variable "eks_managed_node_group_defaults" {
   description = "Map of EKS managed node group default configurations"
   type        = any

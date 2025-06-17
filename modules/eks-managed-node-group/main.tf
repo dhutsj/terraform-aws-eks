@@ -270,7 +270,7 @@ locals {
 }
 
 resource "aws_eks_node_group" "this" {
-  count = var.create ? 1 : 0
+  count = var.create && var.create_managed_node_group ? 1 : 0
 
   # Required
   cluster_name  = var.cluster_name

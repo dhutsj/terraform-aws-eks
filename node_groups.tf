@@ -230,9 +230,10 @@ module "fargate_profile" {
 module "eks_managed_node_group" {
   source = "./modules/eks-managed-node-group"
 
-  for_each = { for k, v in var.eks_managed_node_groups : k => v if var.create }
+  for_each = { for k, v in var.eks_managed_node_groups : k => v if var.create && var.create_managed_node_group }
 
   create = try(each.value.create, true)
+  create_managed_node_group = try(each.value.create, false)
 
   cluster_name              = aws_eks_cluster.this[0].name
   cluster_version           = try(each.value.cluster_version, var.eks_managed_node_group_defaults.cluster_version, aws_eks_cluster.this[0].version)
