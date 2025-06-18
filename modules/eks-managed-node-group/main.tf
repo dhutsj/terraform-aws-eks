@@ -43,7 +43,7 @@ locals {
 }
 
 resource "aws_launch_template" "this" {
-  count = var.create && var.create_launch_template ? 1 : 0
+  count = var.create_managed_node_group && var.create_launch_template ? 1 : 0
 
   name        = var.launch_template_use_name_prefix ? null : local.launch_template_name_int
   name_prefix = var.launch_template_use_name_prefix ? "${local.launch_template_name_int}-" : null
@@ -270,7 +270,7 @@ locals {
 }
 
 resource "aws_eks_node_group" "this" {
-  count = var.create && var.create_managed_node_group ? 1 : 0
+  count = var.create_managed_node_group ? 1 : 0
 
   # Required
   cluster_name  = var.cluster_name
